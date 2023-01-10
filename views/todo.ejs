@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="/assets/styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
     
   <div id="todo-table">
-       <form method="post" action="/todo">
+       <form>
         <input type="text" name="item" placeholder="Add new item..." required />
         <button  id="button" type="submit">Add Item</button>
        </form>
@@ -22,5 +23,46 @@
        </ul>
   </div>
 
+  <script>
+       $(document).ready(function () {
+
+
+        $('form').on('submit', function(){
+
+            let item = $('form input');
+            let todo = {item: item.val()};
+
+            $.ajax({
+              type: 'POST',
+              url: '/todo',
+              data: todo,
+              success: function(data){
+                //do something with the data via front-end framework
+                // window.href();
+                location.reload();
+                console.log(data);
+              }
+            });
+            return false;
+        });
+
+
+
+        $("li").on("click", function () {
+          var item = $(this).text().replace(/ /g, "");
+          console.log(item);
+          // alert(item);
+          $.ajax({
+            type: "DELETE",
+            url: "/todo/" + item,
+            success: function (data) {
+              //do something with the data via front-end framework
+              //   location.reload();
+              location.href = "/todo";
+            },
+          });
+        });
+      });
+  </script>
 </body>
 </html>

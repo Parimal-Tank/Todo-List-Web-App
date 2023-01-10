@@ -9,6 +9,7 @@ body{
     width: 95%;
     background: #090d13;
     margin: 0 auto;
+    margin-left: 100px;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -21,7 +22,7 @@ body{
 }
 
 input[type="text"]{
-    width: 70%;
+    width: 60%;
     padding: 20px;
     background:#181c22;
     border: 0;
@@ -32,7 +33,7 @@ input[type="text"]{
 
 button{
     padding: 20px;
-    width: 30%;
+    width: 20%;
     float: left;
     background: #23282e;
     border: 0;
